@@ -42,11 +42,11 @@ public class Agregar extends javax.swing.JFrame {
                 String apellidoP  = scanner.next();
                 String apellidoM  = scanner.next();
                 String direccion  = scanner.next();
-                String edad       = scanner.next(); 
+                String      edad  = scanner.next(); 
                 String  telefono  = scanner.next();
-                String   correo   = scanner.next();
-                String  estado    = scanner.next();
-                String   ciudad   = scanner.next();
+                String    correo  = scanner.next();
+                String    estado  = scanner.next();
+                String    ciudad  = scanner.next();
                 
                 Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, direccion, edad, telefono, correo, estado, ciudad);
                 contactos.add( c01 );
@@ -239,9 +239,6 @@ public class Agregar extends javax.swing.JFrame {
                         .addGap(190, 190, 190)
                         .addComponent(txtCiudad))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -300,6 +297,10 @@ public class Agregar extends javax.swing.JFrame {
                                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addGap(147, 147, 147))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,6 +383,7 @@ public class Agregar extends javax.swing.JFrame {
         txtEdad.setText("");
         txtCorreo.setText("");
         txtEstado.setText("");
+        txtCiudad.setText("");
         jLabel10.setText("");
         jLabel11.setText("");
         jLabel12.setText("");
@@ -473,7 +475,7 @@ public class Agregar extends javax.swing.JFrame {
                 try {
                     Formatter formatter = new Formatter( archivo );
                     listaContactos.forEach((con) -> {
-                        formatter.format("%s,%s,%s,%s,%s,%s,%s,%s,",
+                        formatter.format("%s,%s,%s,%s,%s,%s,%s,%s,%S",
                         con.getNombre(),con.getApellidoP(), con.getApellidoM(), con.getDireccion(), con.getEdad(), con.getTelefono(), con.getCorreo(), con.getEstado(), con.getCiudad());
                     });
                     formatter.flush();
@@ -487,8 +489,8 @@ public class Agregar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error", "Error", JOptionPane.ERROR_MESSAGE);
                 }
         
-                Visualizar v = new Visualizar();
-                v.setVisible(true);
+                /*Visualizar v = new Visualizar();
+                v.setVisible(true);*/
             }
             else{
                 getToolkit().beep();
