@@ -24,8 +24,6 @@ public class Visualizar extends javax.swing.JFrame {
 
     private File archivo;
     
-    private File archivocsv = new File ("contacto.csv");
-    
     public Visualizar() {
         initComponents();
              
@@ -50,13 +48,15 @@ public class Visualizar extends javax.swing.JFrame {
                 String    nombre  = scanner.next();
                 String apellidoP  = scanner.next();
                 String apellidoM  = scanner.next();
-                String     email  = scanner.next();
+                String direccion  = scanner.next();
+                String      edad  = scanner.next();
                 String  telefono  = scanner.next();
-                String   celular  = scanner.next();
-                String  facebook  = scanner.next();
-                String   twitter  = scanner.next();
+                String    correo  = scanner.next();
+                String    estado  = scanner.next();
+                String    ciudad  = scanner.next();
+
                 
-                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, email, telefono, celular, facebook, twitter);
+                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, direccion, edad, telefono, correo, estado, ciudad);
                 listaContactos.add( c01 );
             } // Fin while
         } catch (FileNotFoundException ex) {
@@ -70,16 +70,18 @@ public class Visualizar extends javax.swing.JFrame {
             matriz[i][0] = listaContactos.get(i).getNombre();
             matriz[i][1] = listaContactos.get(i).getApellidoP();
             matriz[i][2] = listaContactos.get(i).getApellidoM();
-            matriz[i][3] = listaContactos.get(i).getEmail(); 
-            matriz[i][4] = listaContactos.get(i).getTelefono();
-            matriz[i][5] = listaContactos.get(i).getCelular();
-            matriz[i][6] = listaContactos.get(i).getFacebook();
-            matriz[i][7] = listaContactos.get(i).getTwitter();
+            matriz[i][3] = listaContactos.get(i).getDireccion(); 
+            matriz[i][4] = listaContactos.get(i).getEdad();
+            matriz[i][5] = listaContactos.get(i).getTelefono();
+            matriz[i][6] = listaContactos.get(i).getCorreo();
+            matriz[i][7] = listaContactos.get(i).getEstado();
+            matriz[i][8] = listaContactos.get(i).getCiudad();
+       
         }
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             matriz,
             new String [] {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Email", "Telefono", "Celular", "Facebook", "Twitter"
+                "Nombre", "Apellido Paterno", "Apellido Materno", "Dirección", "Telefono", "Edad", "Correo", "Estado", "Ciudad"
             }
         ));
     }  
@@ -92,21 +94,19 @@ public class Visualizar extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Contactos");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Email", "Telefono", "Celular", "Facebook", "Twitter"
+                "Nombre", "Apellido Paterno", "Apellido Materno", "Direccion", "Edad", "Teléfono", "Correo", "Estado", "Ciudad"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -122,17 +122,6 @@ public class Visualizar extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Exportar CVS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setText("Exportar XLSX");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,11 +136,7 @@ public class Visualizar extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegresar)
                 .addGap(32, 32, 32))
         );
@@ -163,10 +148,7 @@ public class Visualizar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegresar)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                .addComponent(btnRegresar)
                 .addGap(34, 34, 34))
         );
 
@@ -176,58 +158,6 @@ public class Visualizar extends javax.swing.JFrame {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        ArrayList<Contacto> listacsv = new ArrayList<>();
-        Contacto columnas = new Contacto("Nombre","Apellido Paterno","Apellido Materno","Email","Telefono","Celular","Facebook","Twitter");
-        listacsv.add(columnas);
-        
-        try {
-            Scanner scanner = new Scanner( archivo );
-            scanner.useDelimiter(",");
-            while ( scanner.hasNext() ){
-                String    nombre  = scanner.next();
-                String apellidoP  = scanner.next();
-                String apellidoM  = scanner.next();
-                String     email  = scanner.next();
-                String  telefono  = scanner.next();
-                String   celular  = scanner.next();
-                String  facebook  = scanner.next();
-                String   twitter  = scanner.next();
-                
-                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, email, telefono, celular, facebook, twitter);
-                listacsv.add( c01 );
-            } // Fin while
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try{
-            FileWriter fw = new FileWriter( archivocsv );
-            BufferedWriter bw = new BufferedWriter(fw);
-        
-            for (int i = 0; i < listacsv.size() ; i++) {
-                
-                bw.write(listacsv.get(i).getNombre()+","
-                    +listacsv.get(i).getApellidoP()+","
-                    +listacsv.get(i).getApellidoM()+","
-                    +listacsv.get(i).getEmail()+","
-                    +listacsv.get(i).getTelefono()+","
-                    +listacsv.get(i).getCelular()+","
-                    +listacsv.get(i).getFacebook()+","
-                    +listacsv.get(i).getTwitter()+",");
-                bw.newLine();
-            }
-            
-            bw.close();
-            fw.close();
-        }
-        catch(IOException ex){
-            
-        }      
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,8 +196,6 @@ public class Visualizar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
