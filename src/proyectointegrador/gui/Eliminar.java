@@ -48,7 +48,7 @@ public class Eliminar extends javax.swing.JFrame {
             Scanner scanner = new Scanner( archivo );
             scanner.useDelimiter(",");
             while ( scanner.hasNext() ){
-                String    nombre  = scanner.next();
+                tring    nombre  = scanner.next();
                 String apellidoP  = scanner.next();
                 String apellidoM  = scanner.next();
                 String direccion  = scanner.next();
@@ -69,16 +69,14 @@ public class Eliminar extends javax.swing.JFrame {
         String matriz[][] = new String[ listaContactos.size()][8];
         
         for (int i = 0; i < listaContactos.size() ; i++) {
-            
-                matriz[i][0] = listaContactos.get(i).getNombre();
-                matriz[i][1] = listaContactos.get(i).getApellidoP();
-                matriz[i][2] = listaContactos.get(i).getApellidoM();
-                matriz[i][3] = listaContactos.get(i).getDireccion();
-                matriz[i][4] = listaContactos.get(i).getEdad();
-                matriz[i][5] = listaContactos.get(i).getTelefono();
-                matriz[i][6] = listaContactos.get(i).getCorreo();
-                matriz[i][7] = listaContactos.get(i).getEstado();
-                matriz[i][8] = listaContactos.get(i).getCiudad();
+            matriz[i][0] = listaContactos.get(i).getNombre();
+            matriz[i][1] = listaContactos.get(i).getApellidoP();
+            matriz[i][2] = listaContactos.get(i).getApellidoM();
+            matriz[i][3] = listaContactos.get(i).getDireccion(); 
+            matriz[i][4] = listaContactos.get(i).getTelefono();
+            matriz[i][5] = listaContactos.get(i).getCorreo();
+            matriz[i][6] = listaContactos.get(i).getEstado();
+            matriz[i][7] = listaContactos.get(i).getCiudad();
         }
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             matriz,
@@ -459,14 +457,13 @@ public class Eliminar extends javax.swing.JFrame {
                 String    nombre  = scanner.next();
                 String apellidoP  = scanner.next();
                 String apellidoM  = scanner.next();
-                String direccion  = scanner.next();
-                String edad       = scanner.next(); 
+                String     email  = scanner.next();
                 String  telefono  = scanner.next();
-                String   correo   = scanner.next();
-                String  estado    = scanner.next();
-                String   ciudad   = scanner.next();
+                String   celular  = scanner.next();
+                String  facebook  = scanner.next();
+                String   twitter  = scanner.next();
                 
-                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, direccion, edad, telefono, correo, estado, ciudad);
+                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, email, telefono, celular, facebook, twitter);
                 listaContactos.add( c01 );
             } // Fin while
         } catch (FileNotFoundException ex) {
@@ -476,10 +473,10 @@ public class Eliminar extends javax.swing.JFrame {
         //Elimina elemento del arraylist
         for (int i = 0 ; i < listaContactos.size() ; i++) {
             
-            if ( txtCiudad.getText().equals(listaContactos.get(i).getTelefono()) ) {
+            if ( txtCiudad.getText().equals(listaContactos.get(i).getTwitter()) ) {
                 listaContactos.remove(i);
                 getToolkit().beep();
-                JOptionPane.showMessageDialog(this,"Usuario eliminado.");
+                JOptionPane.showMessageDialog(this,"Contacto eliminado.");
             }
         } 
         
@@ -487,16 +484,14 @@ public class Eliminar extends javax.swing.JFrame {
         String matriz[][] = new String[ listaContactos.size()][8];
         
         for (int i = 0; i < listaContactos.size() ; i++) {
-            
-                matriz[i][0] = listaContactos.get(i).getNombre();
-                matriz[i][1] = listaContactos.get(i).getApellidoP();
-                matriz[i][2] = listaContactos.get(i).getApellidoM();
-                matriz[i][3] = listaContactos.get(i).getDireccion();
-                matriz[i][4] = listaContactos.get(i).getEdad();
-                matriz[i][5] = listaContactos.get(i).getTelefono();
-                matriz[i][6] = listaContactos.get(i).getCorreo();
-                matriz[i][7] = listaContactos.get(i).getEstado();
-                matriz[i][8] = listaContactos.get(i).getCiudad();
+            matriz[i][0] = listaContactos.get(i).getNombre();
+            matriz[i][1] = listaContactos.get(i).getApellidoP();
+            matriz[i][2] = listaContactos.get(i).getApellidoM();
+            matriz[i][3] = listaContactos.get(i).getEmail(); 
+            matriz[i][4] = listaContactos.get(i).getTelefono();
+            matriz[i][5] = listaContactos.get(i).getCelular();
+            matriz[i][6] = listaContactos.get(i).getFacebook();
+            matriz[i][7] = listaContactos.get(i).getTwitter();
         }
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             matriz,
@@ -510,7 +505,6 @@ public class Eliminar extends javax.swing.JFrame {
         txtApellidoP.setText("");
         txtApellidoM.setText("");
         txtDireccion.setText("");
-        txtEdad.setText("");
         txtTelefono.setText("");
         txtCorreo.setText("");
         txtEstado.setText("");
@@ -520,7 +514,7 @@ public class Eliminar extends javax.swing.JFrame {
             Formatter formatter = new Formatter( archivo );
             listaContactos.forEach((con) -> {
                 formatter.format("%s,%s,%s,%s,%s,%s,%s,%s,",
-                        con.getNombre(),con.getApellidoP(), con.getApellidoM(), con.getDireccion(), con.getEdad(), con.getTelefono(), con.getCorreo(), con.getEstado(), con.getCiudad());
+                        con.getNombre(),con.getApellidoP(), con.getApellidoM(), con.getEmail(), con.getTelefono(), con.getCelular(), con.getFacebook(), con.getTwitter());
             });
             formatter.flush();                        
          
@@ -555,11 +549,6 @@ public class Eliminar extends javax.swing.JFrame {
             //jLabel14.setText("Campo vacio");
         }
         
-        if(txtEdad.getText().trim().isEmpty()){
-            bandera = 1;
-            //jLabel14.setText("Campo vacio");
-        }
-        
         if(txtTelefono.getText().trim().isEmpty()){
             bandera = 1;
             //jLabel15.setText("Campo vacio");
@@ -590,16 +579,15 @@ public class Eliminar extends javax.swing.JFrame {
                 scanner.useDelimiter(",");
                 while ( scanner.hasNext() ){
                     String    nombre  = scanner.next();
-                String apellidoP  = scanner.next();
-                String apellidoM  = scanner.next();
-                String direccion  = scanner.next();
-                String edad       = scanner.next(); 
-                String  telefono  = scanner.next();
-                String   correo   = scanner.next();
-                String  estado    = scanner.next();
-                String   ciudad   = scanner.next();
+                    String apellidoP  = scanner.next();
+                    String apellidoM  = scanner.next();
+                    String     email  = scanner.next();
+                    String  telefono  = scanner.next();
+                    String   celular  = scanner.next();
+                    String  facebook  = scanner.next();
+                    String   twitter  = scanner.next();
                 
-               Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, direccion, edad, telefono, correo, estado, ciudad);
+                    Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, email, telefono, celular, facebook, twitter);
                     listaContactos.add( c01 );
                 } // Fin while
             } catch (FileNotFoundException ex) {
@@ -613,8 +601,6 @@ public class Eliminar extends javax.swing.JFrame {
                     listaContactos.get(i).setNombre(txtNombre.getText().trim());
                     listaContactos.get(i).setApellidoP(txtApellidoP.getText().trim());
                     listaContactos.get(i).setApellidoM(txtApellidoM.getText().trim());
-                    listaContactos.get(i).setDireccion(txtDireccion.getText().trim());
-                    listaContactos.get(i).setEdad(txtEdad.getText().trim());
                     listaContactos.get(i).setTelefono(txtTelefono.getText().trim());
                     listaContactos.get(i).setCorreo(txtCorreo.getText().trim());
                     listaContactos.get(i).setEstado(txtEstado.getText().trim());
