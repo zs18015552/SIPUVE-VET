@@ -50,13 +50,14 @@ public class Visualizar extends javax.swing.JFrame {
                 String    nombre  = scanner.next();
                 String apellidoP  = scanner.next();
                 String apellidoM  = scanner.next();
-                String     email  = scanner.next();
+                String direccion  = scanner.next();
+                String edad       = scanner.next(); 
                 String  telefono  = scanner.next();
-                String   celular  = scanner.next();
-                String  facebook  = scanner.next();
-                String   twitter  = scanner.next();
+                String   correo   = scanner.next();
+                String  estado    = scanner.next();
+                String   ciudad   = scanner.next();
                 
-                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, email, telefono, celular, facebook, twitter);
+                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, direccion, edad, telefono, correo, estado, ciudad);
                 listaContactos.add( c01 );
             } // Fin while
         } catch (FileNotFoundException ex) {
@@ -67,14 +68,15 @@ public class Visualizar extends javax.swing.JFrame {
         String matriz[][] = new String[ listaContactos.size()][8];
         
         for (int i = 0; i < listaContactos.size() ; i++) {
-            matriz[i][0] = listaContactos.get(i).getNombre();
-            matriz[i][1] = listaContactos.get(i).getApellidoP();
-            matriz[i][2] = listaContactos.get(i).getApellidoM();
-            matriz[i][3] = listaContactos.get(i).getEmail(); 
-            matriz[i][4] = listaContactos.get(i).getTelefono();
-            matriz[i][5] = listaContactos.get(i).getCelular();
-            matriz[i][6] = listaContactos.get(i).getFacebook();
-            matriz[i][7] = listaContactos.get(i).getTwitter();
+                matriz[i][0] = listaContactos.get(i).getNombre();
+                matriz[i][1] = listaContactos.get(i).getApellidoP();
+                matriz[i][2] = listaContactos.get(i).getApellidoM();
+                matriz[i][3] = listaContactos.get(i).getDireccion();
+                matriz[i][4] = listaContactos.get(i).getEdad();
+                matriz[i][5] = listaContactos.get(i).getTelefono();
+                matriz[i][6] = listaContactos.get(i).getCorreo();
+                matriz[i][7] = listaContactos.get(i).getEstado();
+                matriz[i][8] = listaContactos.get(i).getCiudad();
         }
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             matriz,
@@ -100,13 +102,13 @@ public class Visualizar extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido Paterno", "Apellido Materno", "Email", "Telefono", "Celular", "Facebook", "Twitter"
+                "Nombre", "Apellido Paterno", "Apellido Materno", "Direccion", "Edad", "Correo", "Telefono", "Ciudad", "Estado"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -180,7 +182,7 @@ public class Visualizar extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         ArrayList<Contacto> listacsv = new ArrayList<>();
-        Contacto columnas = new Contacto("Nombre","Apellido Paterno","Apellido Materno","Email","Telefono","Celular","Facebook","Twitter");
+        Contacto columnas = new Contacto("Nombre","Apellido Paterno","Apellido Materno","Dirección", "Edad","Telefono","Correo","Estado","Ciudad");
         listacsv.add(columnas);
         
         try {
@@ -190,13 +192,14 @@ public class Visualizar extends javax.swing.JFrame {
                 String    nombre  = scanner.next();
                 String apellidoP  = scanner.next();
                 String apellidoM  = scanner.next();
-                String     email  = scanner.next();
+                String direccion  = scanner.next();
+                String edad       = scanner.next(); 
                 String  telefono  = scanner.next();
-                String   celular  = scanner.next();
-                String  facebook  = scanner.next();
-                String   twitter  = scanner.next();
+                String   correo   = scanner.next();
+                String  estado    = scanner.next();
+                String   ciudad   = scanner.next();
                 
-                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, email, telefono, celular, facebook, twitter);
+                Contacto c01 = new Contacto ( nombre, apellidoP, apellidoM, direccion, edad, telefono, correo, estado, ciudad);
                 listacsv.add( c01 );
             } // Fin while
         } catch (FileNotFoundException ex) {
@@ -212,11 +215,12 @@ public class Visualizar extends javax.swing.JFrame {
                 bw.write(listacsv.get(i).getNombre()+","
                     +listacsv.get(i).getApellidoP()+","
                     +listacsv.get(i).getApellidoM()+","
-                    +listacsv.get(i).getEmail()+","
+                    +listacsv.get(i).getDireccion()+","
+                    +listacsv.get(i).getEdad()+","
                     +listacsv.get(i).getTelefono()+","
-                    +listacsv.get(i).getCelular()+","
-                    +listacsv.get(i).getFacebook()+","
-                    +listacsv.get(i).getTwitter()+",");
+                    +listacsv.get(i).getCorreo()+","
+                    +listacsv.get(i).getEstado()+","
+                    +listacsv.get(i).getCiudad()+",");
                 bw.newLine();
             }
             

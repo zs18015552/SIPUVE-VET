@@ -72,6 +72,10 @@ public class Contacto {
         return correo;
     }
 
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
     public void setCelular(String correo) {
         this.correo = correo;
     }
