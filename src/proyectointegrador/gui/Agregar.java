@@ -473,7 +473,7 @@ public class Agregar extends javax.swing.JFrame {
                 try {
                     Formatter formatter = new Formatter( archivo );
                     listaContactos.forEach((con) -> {
-                        formatter.format("%s,%s,%s,%s,%s,%s,%s,%s,",
+                        formatter.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,",
                         con.getNombre(),con.getApellidoP(), con.getApellidoM(), con.getDireccion(), con.getEdad(), con.getTelefono(), con.getCorreo(), con.getEstado(), con.getCiudad());
                     });
                     formatter.flush();
@@ -487,8 +487,8 @@ public class Agregar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error", "Error", JOptionPane.ERROR_MESSAGE);
                 }
         
-                Visualizar v = new Visualizar();
-                v.setVisible(true);
+                /*Visualizar v = new Visualizar();
+                v.setVisible(true);*/
             }
             else{
                 getToolkit().beep();
@@ -534,7 +534,7 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDireccionActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /*Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -564,7 +564,6 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
